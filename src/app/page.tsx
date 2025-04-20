@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Mail } from 'lucide-react';
+import Image from 'next/image';
 
 const Feature = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
   <div className="flex flex-col items-center justify-center p-4">
@@ -28,7 +29,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-fixed [background-position:50rem] [background-size:400px] opacity-5" style={{ backgroundImage: "url('/football-pattern.svg')" }} />
         <div className="container relative mx-auto">
           <div className="flex items-center justify-center text-6xl text-primary">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-hand-heart mr-2"><path d="M11 10V5c0-1.5 1-2 2-2 .8 0 1.3.5 1.6 1 0 0 3 0 3 4v5" /><path d="m3 13 4 4 6-4" /><path d="M7 21h11" /><path d="M8 13h5l4 4 2-2" /><path d="M22.4 14.7a2 2 0 0 0-2.7-3.4L19 11" /><path d="M17.5 15.5a2 2 0 0 0 2.7 3.4L21 17" /><path d="M12 21a9 9 0 1 0 0-18c0 2.8 1 5 3 7 0 .8-.7 1.6-1.5 1.5-.8 0-1.5.7-1.5 1.5 0 2.3 2 3.5 2 5" /></svg>
+            <Image src="/OffsideClubLogo.png" alt="Offside Club Logo" width={60} height={60} className="mr-2" />
             Offside Club
           </div>
           <h1 className="mt-4 text-4xl font-bold">Football Predictions. Social Gaming.</h1>
