@@ -32,8 +32,8 @@ export default function Home() {
             <Image src="/OffsideClubLogo.png" alt="Offside Club Logo" width={60} height={60} className="mr-2" />
             Offside Club
           </div>
-          <h1 className="mt-4 text-4xl font-bold">Football Predictions. Social Gaming.</h1>
-          <p className="mt-2 text-lg text-muted-foreground">Coming Soon to Play Store and App Store</p>
+          <h1 className="mt-4 text-4xl font-bold">Predicciones de Fútbol. Juego Social.</h1>
+          <p className="mt-2 text-lg text-muted-foreground">Próximamente en Play Store y App Store</p>
         </div>
       </section>
 
@@ -41,7 +41,7 @@ export default function Home() {
       <section className="py-12">
         <div className="container mx-auto text-center">
           <p className="text-lg text-muted-foreground">
-            Offside Club is a social gaming platform where football fans compete with friends by making match predictions and answering fun social questions about their group.
+            Offside Club es una plataforma de juego social donde los fanáticos del fútbol compiten con amigos haciendo predicciones de partidos y respondiendo preguntas sociales divertidas sobre su grupo.
           </p>
         </div>
       </section>
@@ -51,23 +51,23 @@ export default function Home() {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <Feature
             icon={<Icons.shield />}
-            title="Predictions"
-            description="Make predictions on football matches"
+            title="Predicciones"
+            description="Haz predicciones sobre partidos de fútbol"
           />
           <Feature
             icon={<Icons.server />}
-            title="Rankings"
-            description="Compete in rankings with your friends"
+            title="Clasificaciones"
+            description="Compite en clasificaciones con tus amigos"
           />
           <Feature
             icon={<Icons.messageSquare />}
-            title="Social Questions"
-            description="Answer social questions about your group"
+            title="Preguntas Sociales"
+            description="Responde preguntas sociales sobre tu grupo"
           />
           <Feature
             icon={<Icons.messageSquare />}
             title="Chat"
-            description="Chat and react to your friends' predictions"
+            description="Chatea y reacciona a las predicciones de tus amigos"
           />
         </div>
       </section>
@@ -75,11 +75,11 @@ export default function Home() {
       {/* How it Works Section */}
       <section className="py-12">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-semibold">How it Works</h2>
+          <h2 className="text-3xl font-semibold">Cómo Funciona</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <HowItWorksStep number={1} description="Sign up and create a group with your friends." />
-            <HowItWorksStep number={2} description="Make predictions on upcoming football matches." />
-            <HowItWorksStep number={3} description="Compete in the rankings and answer social questions." />
+            <HowItWorksStep number={1} description="Regístrate y crea un grupo con tus amigos." />
+            <HowItWorksStep number={2} description="Haz predicciones sobre los próximos partidos de fútbol." />
+            <HowItWorksStep number={3} description="Compite en las clasificaciones y responde preguntas sociales." />
           </div>
         </div>
       </section>
@@ -87,12 +87,12 @@ export default function Home() {
       {/* Email Signup Form */}
       <section className="py-12">
         <div className="container mx-auto text-center">
-          <h2 className="text-2xl font-semibold">Get notified when we launch!</h2>
+          <h2 className="text-2xl font-semibold">¡Recibe una notificación cuando lancemos!</h2>
           <div className="mt-4 flex items-center justify-center">
-            <Input type="email" placeholder="Enter your email" className="w-full md:w-auto max-w-md rounded-l-md" />
+            <Input type="email" placeholder="Ingresa tu correo electrónico" className="w-full md:w-auto max-w-md rounded-l-md" />
             <Button className="rounded-l-none rounded-r-md" >
               <Mail className="mr-2 h-4 w-4" />
-              Notify Me
+              Notificarme
             </Button>
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-6 text-center text-muted-foreground">
-        <p>© {new Date().getFullYear()} Offside Club. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Offside Club. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
