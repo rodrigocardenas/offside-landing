@@ -32,7 +32,7 @@ export default function Home() {
             <Image src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck" alt="Offside Club Logo" width={120} height={120} />
           </div>
           <h1 className="mt-4 text-4xl font-bold">Predicciones de Fútbol. Juego Social.</h1>
-          <p className="mt-2 text-lg text-muted-foreground">Próximamente en Play Store y App Store</p>
+          <p className="mt-2 text-lg text-muted-foreground">...próximamente en Play Store y App Store</p>
         </div>
       </section>
 
