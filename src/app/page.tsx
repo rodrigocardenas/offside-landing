@@ -29,8 +29,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-fixed [background-position:50rem] [background-size:400px] opacity-5" style={{ backgroundImage: "url('/football-pattern.svg')" }} />
         <div className="container relative mx-auto">
           <div className="flex items-center justify-center text-6xl text-primary">
-            <Image src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck" alt="Offside Club Logo" width={60} height={60} className="mr-2" />
-            Offside Club
+            <Image src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck" alt="Offside Club Logo" width={120} height={120} />
           </div>
           <h1 className="mt-4 text-4xl font-bold">Predicciones de Fútbol. Juego Social.</h1>
           <p className="mt-2 text-lg text-muted-foreground">Próximamente en Play Store y App Store</p>
