@@ -40,8 +40,10 @@ export default function Home() {
       <section className="py-12">
         <div className="container mx-auto text-center">
           <p className="text-lg text-muted-foreground">
+            Offside Club es una plataforma de social gaming donde puedes desafiar a tus amigos y demostrar quién tiene la mejor intuición futbolística. Haz predicciones sobre los partidos, responde preguntas sociales divertidas y sumérgete en una experiencia llena de emoción y risas.          </p>
+          {/* <p className="text-lg text-muted-foreground">
             Offside Club es una plataforma de juego social donde los fanáticos del fútbol compiten con amigos haciendo predicciones de partidos y respondiendo preguntas sociales divertidas sobre su grupo.
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -59,8 +61,7 @@ export default function Home() {
             description="Compite en clasificaciones con tus amigos"
           />
           <Feature
-            icon={<Icons.messageSquare />}
-            title="Preguntas Sociales"
+            icon={<Icons.questionCircle />} title="Preguntas Sociales"
             description="Responde preguntas sociales sobre tu grupo"
           />
           <Feature
@@ -72,7 +73,7 @@ export default function Home() {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-12">
+      {/* <section className="py-12">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-semibold">Cómo Funciona</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -81,7 +82,7 @@ export default function Home() {
             <HowItWorksStep number={3} description="Compite en las clasificaciones y responde preguntas sociales." />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Email Signup Form */}
       <section className="py-12">
