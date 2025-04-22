@@ -41,9 +41,6 @@ export default function Home() {
         <div className="container mx-auto text-center">
           <p className="text-lg text-muted-foreground">
             Offside Club es una plataforma de social gaming donde puedes desafiar a tus amigos y demostrar quién tiene la mejor intuición futbolística. Haz predicciones sobre los partidos, responde preguntas sociales divertidas y sumérgete en una experiencia llena de emoción y risas.          </p>
-          {/* <p className="text-lg text-muted-foreground">
-            Offside Club es una plataforma de juego social donde los fanáticos del fútbol compiten con amigos haciendo predicciones de partidos y respondiendo preguntas sociales divertidas sobre su grupo.
-          </p> */}
         </div>
       </section>
 
@@ -61,7 +58,8 @@ export default function Home() {
             description="Compite en clasificaciones con tus amigos"
           />
           <Feature
-            icon={<Icons.questionCircle />} title="Preguntas Sociales"
+            icon={<Icons.questionCircle />} 
+            title="Preguntas Sociales"
             description="Responde preguntas sociales sobre tu grupo"
           />
           <Feature
