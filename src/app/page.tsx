@@ -58,7 +58,7 @@ export default function Home() {
             description="Compite en clasificaciones con tus amigos"
           />
           <Feature
-            icon={<Icons.questionCircle />} 
+            icon={<Icons.messageSquare />} 
             title="Preguntas Sociales"
             description="Responde preguntas sociales sobre tu grupo"
           />
