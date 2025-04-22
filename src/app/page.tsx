@@ -87,7 +87,7 @@ export default function Home() {
       {/* Email Signup Form */}
       <section className="py-12">
         <div className="container mx-auto text-center">
-          <h2 className="text-2xl font-semibold">¡Recibe una notificación cuando lancemos!</h2>
+          <h2 className="text-2xl font-semibold">¡Recibe una notificación cuando lancemos la app!</h2>
           <div className="mt-4 flex items-center justify-center">
             <Input type="email" placeholder="Ingresa tu correo electrónico" className="w-full md:w-auto max-w-md rounded-l-md" />
             <Button className="rounded-l-none rounded-r-md" >
