@@ -70,17 +70,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it Works Section */}
-      {/* <section className="py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-semibold">Cómo Funciona</h2>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <HowItWorksStep number={1} description="Regístrate y crea un grupo con tus amigos." />
-            <HowItWorksStep number={2} description="Haz predicciones sobre los próximos partidos de fútbol." />
-            <HowItWorksStep number={3} description="Compite en las clasificaciones y responde preguntas sociales." />
-          </div>
-        </div>
-      </section> */}
 
       {/* Email Signup Form */}
       <section className="py-12">
