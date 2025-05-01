@@ -9,14 +9,14 @@ body {
 
 @layer base {
   :root {
-    /* Offside Club Theme - Dark Green & Teal */
-    --background: 179 70% 13.5%; /* Dark Green (#073B3A) */
+    /* Offside Club Theme - Black & Teal */
+    --background: 0 0% 0%; /* Black */
     --foreground: 180 10% 90%; /* Light Gray/Off-white */
 
-    --card: 179 70% 13.5%; /* Dark Green */
+    --card: 0 0% 5%; /* Slightly lighter black for cards */
     --card-foreground: 180 10% 90%; /* Light Gray/Off-white */
 
-    --popover: 179 70% 10%; /* Slightly darker green for popovers */
+    --popover: 0 0% 7%; /* Slightly lighter black for popovers */
     --popover-foreground: 180 10% 90%; /* Light Gray/Off-white */
 
     --primary: 175 65% 33%; /* Teal (#1D8A81) */
@@ -25,7 +25,7 @@ body {
     --secondary: 175 65% 40%; /* Slightly lighter Teal for secondary elements */
     --secondary-foreground: 0 0% 100%; /* White */
 
-    --muted: 179 40% 25%; /* Muted Green */
+    --muted: 0 0% 15%; /* Dark Gray */
     --muted-foreground: 180 5% 70%; /* Grayish text on muted */
 
     --accent: 175 65% 33%; /* Teal for accents */
@@ -34,39 +34,39 @@ body {
     --destructive: 0 70% 50%; /* Standard destructive red */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 179 40% 25%; /* Muted Green for borders */
-    --input: 179 40% 20%; /* Slightly darker Muted Green for input backgrounds */
+    --border: 0 0% 15%; /* Dark Gray for borders */
+    --input: 0 0% 10%; /* Slightly darker Gray for input backgrounds */
     --ring: 175 65% 33%; /* Teal for focus rings */
 
     --radius: 0.5rem;
 
-    /* Chart colors (adjust as needed) */
+    /* Chart colors (adjust as needed, teal remains primary) */
     --chart-1: 175 65% 33%; /* Teal */
     --chart-2: 195 60% 45%; /* Complementary Blue/Green */
     --chart-3: 30 80% 55%;  /* Contrasting Orange/Yellow */
     --chart-4: 280 65% 60%; /* Contrasting Purple */
     --chart-5: 340 75% 55%; /* Contrasting Pink/Red */
 
-    /* Sidebar colors (can inherit or be specific) */
-    --sidebar-background: 179 70% 10%; /* Darker Green */
+    /* Sidebar colors */
+    --sidebar-background: 0 0% 5%; /* Slightly lighter black */
     --sidebar-foreground: 180 10% 90%;
     --sidebar-primary: 175 65% 33%; /* Teal */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 175 65% 28%; /* Darker Teal */
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 179 40% 20%;
+    --sidebar-border: 0 0% 10%; /* Darker gray */
     --sidebar-ring: 175 65% 33%; /* Teal */
   }
 
   .dark {
     /* Same as :root for a dark-only theme */
-    --background: 179 70% 13.5%; /* Dark Green (#073B3A) */
+    --background: 0 0% 0%; /* Black */
     --foreground: 180 10% 90%; /* Light Gray/Off-white */
 
-    --card: 179 70% 13.5%; /* Dark Green */
+    --card: 0 0% 5%; /* Slightly lighter black for cards */
     --card-foreground: 180 10% 90%; /* Light Gray/Off-white */
 
-    --popover: 179 70% 10%; /* Slightly darker green for popovers */
+    --popover: 0 0% 7%; /* Slightly lighter black for popovers */
     --popover-foreground: 180 10% 90%; /* Light Gray/Off-white */
 
     --primary: 175 65% 33%; /* Teal (#1D8A81) */
@@ -75,7 +75,7 @@ body {
     --secondary: 175 65% 40%; /* Slightly lighter Teal for secondary elements */
     --secondary-foreground: 0 0% 100%; /* White */
 
-    --muted: 179 40% 25%; /* Muted Green */
+    --muted: 0 0% 15%; /* Dark Gray */
     --muted-foreground: 180 5% 70%; /* Grayish text on muted */
 
     --accent: 175 65% 33%; /* Teal for accents */
@@ -84,8 +84,8 @@ body {
     --destructive: 0 70% 50%; /* Standard destructive red */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 179 40% 25%; /* Muted Green for borders */
-    --input: 179 40% 20%; /* Slightly darker Muted Green for input backgrounds */
+    --border: 0 0% 15%; /* Dark Gray for borders */
+    --input: 0 0% 10%; /* Slightly darker Gray for input backgrounds */
     --ring: 175 65% 33%; /* Teal for focus rings */
 
     /* Chart colors (adjust as needed) */
@@ -95,14 +95,14 @@ body {
     --chart-4: 280 65% 60%; /* Contrasting Purple */
     --chart-5: 340 75% 55%; /* Contrasting Pink/Red */
 
-     /* Sidebar colors (can inherit or be specific) */
-    --sidebar-background: 179 70% 10%; /* Darker Green */
+     /* Sidebar colors */
+    --sidebar-background: 0 0% 5%; /* Slightly lighter black */
     --sidebar-foreground: 180 10% 90%;
     --sidebar-primary: 175 65% 33%; /* Teal */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 175 65% 28%; /* Darker Teal */
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 179 40% 20%;
+    --sidebar-border: 0 0% 10%; /* Darker gray */
     --sidebar-ring: 175 65% 33%; /* Teal */
   }
 }
