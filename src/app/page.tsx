@@ -10,7 +10,8 @@ import Image from 'next/image';
 import React, { useState, useTransition } from 'react';
 import { saveEmail } from './actions';
 import { useToast } from "@/hooks/use-toast";
-import { Toaster } from "@/components/ui/toaster";
+// Removed redundant Toaster import as it's in layout.tsx
+// import { Toaster } from "@/components/ui/toaster";
 
 
 const Feature = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
@@ -35,7 +36,9 @@ export default function Home() {
 
   const handleNotifyMe = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("handleNotifyMe triggered"); // Debug log
     if (!email) {
+      console.log("Validation failed: Email empty"); // Debug log
       toast({
         title: "Error",
         description: "Por favor ingresa un correo electrónico.",
@@ -46,6 +49,7 @@ export default function Home() {
 
     // Basic email validation
     if (!/\S+@\S+\.\S+/.test(email)) {
+        console.log("Validation failed: Invalid email format"); // Debug log
         toast({
           title: "Error",
           description: "Por favor ingresa un correo electrónico válido.",
@@ -54,17 +58,21 @@ export default function Home() {
         return;
       }
 
-
+    console.log("Starting transition..."); // Debug log
     startTransition(async () => {
+      console.log("Inside transition: Calling saveEmail..."); // Debug log
       try {
         const result = await saveEmail(email);
+        console.log("saveEmail result:", result); // Debug log
         if (result.success) {
+          console.log("Success branch: Showing success toast"); // Debug log
           toast({
             title: "¡Gracias!",
             description: "Te notificaremos cuando lancemos.",
           });
           setEmail(''); // Clear input on success
         } else {
+          console.log("Error branch: Showing error toast", result.error); // Debug log
           toast({
             title: "Error",
             description: result.error || "Hubo un problema al guardar tu correo. Intenta de nuevo.",
@@ -72,7 +80,7 @@ export default function Home() {
           });
         }
       } catch (error) {
-        console.error("Error saving email:", error);
+        console.error("Catch block: Error saving email:", error); // Debug log
         toast({
           title: "Error",
           description: "Hubo un problema inesperado. Intenta de nuevo.",
@@ -84,7 +92,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <Toaster /> {/* Add Toaster component here */}
+      {/* Removed redundant <Toaster /> component here */}
       {/* Hero Section */}
       <section className="relative py-24 text-center">
         <div className="absolute inset-0 bg-fixed [background-position:50rem] [background-size:400px] opacity-5" style={{ backgroundImage: "url('/football-pattern.svg')" }} />
@@ -173,3 +181,4 @@ export default function Home() {
     </div>
   );
 }
+
