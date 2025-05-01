@@ -25,10 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es"> {/* Changed lang to Spanish */}
+    <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          {children}
-          <Toaster /> {/* Add Toaster here, outside the main content flow */}
+        {children}
+        <Toaster /> {/* Add Toaster here, outside the main content flow */}
       </body>
     </html>
   );
