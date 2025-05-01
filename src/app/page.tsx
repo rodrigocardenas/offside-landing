@@ -1,29 +1,90 @@
 
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Mail } from 'lucide-react';
 import Image from 'next/image';
+import React, { useState, useTransition } from 'react';
+import { saveEmail } from './actions';
+import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster";
+
 
 const Feature = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
-  <div className="flex flex-col items-center justify-center p-4">
-    <div className="text-5xl">{icon}</div>
+  <div className="flex flex-col items-center justify-center p-4 text-center">
+    <div className="text-5xl text-primary">{icon}</div>
     <h3 className="mt-2 text-xl font-semibold">{title}</h3>
-    <p className="mt-1 text-center text-sm text-muted-foreground">{description}</p>
+    <p className="mt-1 text-sm text-muted-foreground">{description}</p>
   </div>
 );
 
 const HowItWorksStep = ({ number, description }: { number: number; description: string }) => (
-  <div className="flex flex-col items-center justify-center p-4">
+  <div className="flex flex-col items-center justify-center p-4 text-center">
     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">{number}</div>
-    <p className="mt-2 text-center text-sm text-muted-foreground">{description}</p>
+    <p className="mt-2 text-sm text-muted-foreground">{description}</p>
   </div>
 );
 
 export default function Home() {
+  const [email, setEmail] = useState('');
+  const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
+
+  const handleNotifyMe = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Por favor ingresa un correo electrónico.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Basic email validation
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        toast({
+          title: "Error",
+          description: "Por favor ingresa un correo electrónico válido.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+
+    startTransition(async () => {
+      try {
+        const result = await saveEmail(email);
+        if (result.success) {
+          toast({
+            title: "¡Gracias!",
+            description: "Te notificaremos cuando lancemos.",
+          });
+          setEmail(''); // Clear input on success
+        } else {
+          toast({
+            title: "Error",
+            description: result.error || "Hubo un problema al guardar tu correo. Intenta de nuevo.",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error("Error saving email:", error);
+        toast({
+          title: "Error",
+          description: "Hubo un problema inesperado. Intenta de nuevo.",
+          variant: "destructive",
+        });
+      }
+    });
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <Toaster /> {/* Add Toaster component here */}
       {/* Hero Section */}
       <section className="relative py-24 text-center">
         <div className="absolute inset-0 bg-fixed [background-position:50rem] [background-size:400px] opacity-5" style={{ backgroundImage: "url('/football-pattern.svg')" }} />
@@ -31,7 +92,7 @@ export default function Home() {
           <div className="flex items-center justify-center text-7xl text-primary">
             <Image src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck" alt="Offside Club Logo" width={260} height={120} />
           </div>
-          <h2 className="mt-4 text-4xl font-bold">Pasión por el fútbol más allá de los 90 minutos</h2>
+          <h1 className="mt-4 text-4xl font-bold">Pasión por el fútbol más allá de los 90 minutos</h1>
           <p className="mt-2 text-lg text-muted-foreground">...próximamente en Play Store y App Store</p>
         </div>
       </section>
@@ -87,13 +148,21 @@ export default function Home() {
       <section className="py-12">
         <div className="container mx-auto text-center">
           <h2 className="text-2xl font-semibold">¡Recibe una notificación cuando lancemos!</h2>
-          <div className="mt-4 flex items-center justify-center">
-            <Input type="email" placeholder="Ingresa tu correo electrónico" className="w-full md:w-auto max-w-md rounded-l-md" />
-            <Button className="rounded-l-none rounded-r-md" >
-              <Mail className="mr-2 h-4 w-4" />
+          <form onSubmit={handleNotifyMe} className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0">
+            <Input
+              type="email"
+              placeholder="Ingresa tu correo electrónico"
+              className="w-full md:w-auto max-w-md rounded-md sm:rounded-l-md sm:rounded-r-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isPending}
+              aria-label="Correo electrónico para notificaciones"
+            />
+            <Button type="submit" className="w-full sm:w-auto rounded-md sm:rounded-l-none sm:rounded-r-md" disabled={isPending}>
+              {isPending ? <Icons.spinner className="animate-spin mr-2" /> : <Mail className="mr-2 h-4 w-4" />}
               Notificarme
             </Button>
-          </div>
+          </form>
         </div>
       </section>
 
