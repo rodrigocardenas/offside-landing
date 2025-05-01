@@ -8,11 +8,10 @@ import { cn } from '@/lib/utils';
 import { Mail } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState, useTransition } from 'react';
-import { saveEmail } from './actions';
-import { useToast } from "@/hooks/use-toast";
-// Removed redundant Toaster import as it's in layout.tsx
-// import { Toaster } from "@/components/ui/toaster";
+import { saveEmail } from './actions'; // Import the server action
+import { useToast } from "@/hooks/use-toast"; // Import useToast hook
 
+// Removed redundant Toaster import as it's in layout.tsx
 
 const Feature = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
   <div className="flex flex-col items-center justify-center p-4 text-center">
@@ -32,13 +31,15 @@ const HowItWorksStep = ({ number, description }: { number: number; description: 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [isPending, startTransition] = useTransition();
-  const { toast } = useToast();
+  const { toast } = useToast(); // Initialize useToast
 
   const handleNotifyMe = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("handleNotifyMe triggered"); // Debug log
+    console.log("[Client] handleNotifyMe triggered"); // Client log
+
+    // Client-side validation
     if (!email) {
-      console.log("Validation failed: Email empty"); // Debug log
+      console.log("[Client] Validation failed: Email empty"); // Client log
       toast({
         title: "Error",
         description: "Por favor ingresa un correo electrónico.",
@@ -46,10 +47,8 @@ export default function Home() {
       });
       return;
     }
-
-    // Basic email validation
     if (!/\S+@\S+\.\S+/.test(email)) {
-        console.log("Validation failed: Invalid email format"); // Debug log
+        console.log("[Client] Validation failed: Invalid email format"); // Client log
         toast({
           title: "Error",
           description: "Por favor ingresa un correo electrónico válido.",
@@ -58,21 +57,21 @@ export default function Home() {
         return;
       }
 
-    console.log("Starting transition..."); // Debug log
+    console.log("[Client] Starting transition..."); // Client log
     startTransition(async () => {
-      console.log("Inside transition: Calling saveEmail..."); // Debug log
+      console.log("[Client] Inside transition: Calling saveEmail..."); // Client log
       try {
         const result = await saveEmail(email);
-        console.log("saveEmail result:", result); // Debug log
+        console.log("[Client] saveEmail result:", result); // Client log
         if (result.success) {
-          console.log("Success branch: Showing success toast"); // Debug log
+          console.log("[Client] Success branch: Showing success toast"); // Client log
           toast({
             title: "¡Gracias!",
             description: "Te notificaremos cuando lancemos.",
           });
           setEmail(''); // Clear input on success
         } else {
-          console.log("Error branch: Showing error toast", result.error); // Debug log
+          console.log("[Client] Error branch: Showing error toast", result.error); // Client log
           toast({
             title: "Error",
             description: result.error || "Hubo un problema al guardar tu correo. Intenta de nuevo.",
@@ -80,7 +79,7 @@ export default function Home() {
           });
         }
       } catch (error) {
-        console.error("Catch block: Error saving email:", error); // Debug log
+        console.error("[Client] Catch block: Error saving email:", error); // Client log
         toast({
           title: "Error",
           description: "Hubo un problema inesperado. Intenta de nuevo.",
@@ -92,13 +91,27 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* Removed redundant <Toaster /> component here */}
       {/* Hero Section */}
       <section className="relative py-24 text-center">
-        <div className="absolute inset-0 bg-fixed [background-position:50rem] [background-size:400px] opacity-5" style={{ backgroundImage: "url('/football-pattern.svg')" }} />
+        {/* Optional: Add subtle pattern */}
+        <div
+            className="absolute inset-0 bg-fixed opacity-5"
+            style={{
+                backgroundImage: "url('/football-pattern.svg')", // Ensure you have this SVG or remove/change
+                backgroundSize: '400px',
+                backgroundPosition: '50rem',
+            }}
+        />
         <div className="container relative mx-auto">
-          <div className="flex items-center justify-center text-7xl text-primary">
-            <Image src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck" alt="Offside Club Logo" width={260} height={120} />
+          <div className="flex items-center justify-center mb-6"> {/* Added margin-bottom */}
+            {/* Using next/image with configured host */}
+            <Image
+              src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck"
+              alt="Offside Club Logo"
+              width={260} // Increased size
+              height={120} // Increased size
+              priority // Add priority for LCP element
+            />
           </div>
           <h1 className="mt-4 text-4xl font-bold">Pasión por el fútbol más allá de los 90 minutos</h1>
           <p className="mt-2 text-lg text-muted-foreground">...próximamente en Play Store y App Store</p>
@@ -132,8 +145,8 @@ export default function Home() {
             title="Preguntas Sociales"
             description="Responde preguntas sociales sobre tu grupo"
           />
-          <Feature
-            icon={<Icons.messageSquare />}
+           <Feature
+            icon={<Icons.messageSquare />} // Consider a different icon?
             title="Chat"
             description="Chatea y reacciona a las predicciones de tus amigos"
           />
@@ -156,6 +169,7 @@ export default function Home() {
       <section className="py-12">
         <div className="container mx-auto text-center">
           <h2 className="text-2xl font-semibold">¡Recibe una notificación cuando lancemos!</h2>
+          {/* Form now uses onSubmit */}
           <form onSubmit={handleNotifyMe} className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0">
             <Input
               type="email"
@@ -163,11 +177,15 @@ export default function Home() {
               className="w-full md:w-auto max-w-md rounded-md sm:rounded-l-md sm:rounded-r-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              disabled={isPending}
+              disabled={isPending} // Disable input while pending
               aria-label="Correo electrónico para notificaciones"
             />
             <Button type="submit" className="w-full sm:w-auto rounded-md sm:rounded-l-none sm:rounded-r-md" disabled={isPending}>
-              {isPending ? <Icons.spinner className="animate-spin mr-2" /> : <Mail className="mr-2 h-4 w-4" />}
+              {isPending ? (
+                <Icons.spinner className="animate-spin mr-2" /> // Show spinner when pending
+              ) : (
+                <Mail className="mr-2 h-4 w-4" />
+              )}
               Notificarme
             </Button>
           </form>
@@ -176,9 +194,10 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-6 text-center text-muted-foreground">
+        {/* Using JS Date object only on client after mount (or using a Server Component would be better) */}
+        {/* For simplicity here, we assume this component runs long enough after hydration */}
         <p>© {new Date().getFullYear()} Offside Club. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
 }
-

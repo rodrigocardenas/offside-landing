@@ -18,11 +18,11 @@ interface SaveEmailResult {
 async function ensureDirectoryExists(dirPath: string) {
   try {
     await fs.mkdir(dirPath, { recursive: true });
-    console.log(`Directory ensured: ${dirPath}`);
+    console.log(`[Server Action] Directory ensured: ${dirPath}`);
   } catch (error: any) {
     // Ignore error if directory already exists
     if (error.code !== 'EEXIST') {
-      console.error(`Error creating directory ${dirPath}:`, error);
+      console.error(`[Server Action] Error creating directory ${dirPath}:`, error);
       throw error; // Re-throw other errors
     }
   }
