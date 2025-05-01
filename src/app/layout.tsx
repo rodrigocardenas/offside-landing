@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Offside Club', // Updated title
-  description: 'Pasión por el fútbol más allá de los 90 minutos', // Updated description
+  title: 'Offside Club',
+  description: 'Pasión por el fútbol más allá de los 90 minutos',
 };
 
 export default function RootLayout({

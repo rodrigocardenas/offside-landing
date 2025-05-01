@@ -122,8 +122,7 @@ export default function Home() {
       <section className="py-12">
         <div className="container mx-auto text-center">
           <p className="text-lg text-muted-foreground">
-            Offside Club es una plataforma de juego social donde los fanáticos del fútbol compiten con amigos haciendo predicciones de partidos y respondiendo preguntas sociales divertidas sobre su grupo.
-          </p>
+            Offside Club es una plataforma de social gaming donde puedes desafiar a tus amigos y demostrar quién tiene la mejor intuición futbolística. Haz predicciones sobre los partidos, responde preguntas sociales divertidas y sumérgete en una experiencia llena de emoción y risas.          </p>
         </div>
       </section>
 
@@ -141,7 +140,7 @@ export default function Home() {
             description="Compite en clasificaciones con tus amigos"
           />
           <Feature
-            icon={<Icons.messageSquare />}
+            icon={<Icons.messageSquare />} 
             title="Preguntas Sociales"
             description="Responde preguntas sociales sobre tu grupo"
           />
@@ -153,17 +152,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it Works Section */}
-      <section className="py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-semibold">Cómo Funciona</h2>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <HowItWorksStep number={1} description="Regístrate y crea un grupo con tus amigos." />
-            <HowItWorksStep number={2} description="Haz predicciones sobre los próximos partidos de fútbol." />
-            <HowItWorksStep number={3} description="Compite en las clasificaciones y responde preguntas sociales." />
-          </div>
-        </div>
-      </section>
 
       {/* Email Signup Form */}
       <section className="py-12">
@@ -174,18 +162,13 @@ export default function Home() {
             <Input
               type="email"
               placeholder="Ingresa tu correo electrónico"
-              className="w-full md:w-auto max-w-md rounded-md sm:rounded-l-md sm:rounded-r-none"
+              className="w-full md:w-auto max-w-md rounded-md"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isPending} // Disable input while pending
-              aria-label="Correo electrónico para notificaciones"
             />
-            <Button type="submit" className="w-full sm:w-auto rounded-md sm:rounded-l-none sm:rounded-r-md" disabled={isPending}>
-              {isPending ? (
-                <Icons.spinner className="animate-spin mr-2" /> // Show spinner when pending
-              ) : (
-                <Mail className="mr-2 h-4 w-4" />
-              )}
+            <Button type="submit" className="w-full sm:w-auto rounded-md" disabled={isPending}>
+              {isPending ? <Icons.spinner className="animate-spin mr-2" /> : <Mail className="mr-2 h-4 w-4" />}
               Notificarme
             </Button>
           </form>
