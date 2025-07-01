@@ -32,7 +32,15 @@ export default function Home() {
             <Image src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck" alt="Offside Club Logo" width={260} height={120} />
           </div>
           <h2 className="mt-4 text-4xl font-bold">Pasión por el fútbol más allá de los 90 minutos</h2>
-          <p className="mt-2 text-lg text-muted-foreground">...próximamente en Play Store y App Store</p>
+          <div className="mt-6">
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-3 bg-primary hover:bg-primary/90"
+              onClick={() => window.open('https://app.offsideclub.es/', '_blank')}
+            >
+              ¡Jugar Ya!
+            </Button>
+          </div>
         </div>
       </section>
 
