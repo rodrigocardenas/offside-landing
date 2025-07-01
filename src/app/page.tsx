@@ -133,6 +133,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sección Dinámica de Juego (sin overlay ni botón) */}
+      <section className="relative w-full flex justify-center items-center min-h-[400px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[800px] overflow-hidden">
+        <Image
+          src="/dinamica-juego.png"
+          alt="Dinámica de juego Offside Club"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          className="z-0"
+          priority={true}
+        />
+      </section>
+
       {/* Key Features Display */}
       <section className="py-12">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -179,31 +191,6 @@ export default function Home() {
               Notificarme
             </Button>
           </form>
-        </div>
-      </section>
-
-      {/* Sección Dinámica de Juego */}
-      <section className="relative w-full flex justify-center items-center min-h-[400px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[800px] overflow-hidden">
-        {/* Imagen de fondo */}
-        <Image
-          src="/dinamica-juego.png"
-          alt="Dinámica de juego Offside Club"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          className="z-0"
-          priority={true}
-        />
-        {/* Overlay para oscurecer un poco la imagen y mejorar la legibilidad del botón */}
-        <div className="absolute inset-0 bg-black/40 z-10" />
-        {/* Botón centrado */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center z-20">
-          <Button
-            size="lg"
-            className="text-lg px-8 py-3 bg-primary hover:bg-primary/90 shadow-xl"
-            onClick={() => window.open('https://app.offsideclub.es/', '_blank')}
-          >
-            ¡Jugar Ya!
-          </Button>
         </div>
       </section>
 
