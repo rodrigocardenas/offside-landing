@@ -77,7 +77,7 @@ ssh -T $SERVER_ALIAS << EOF
     # Reiniciar PM2 (si usas PM2)
     if command -v pm2 &> /dev/null; then
         echo "🔄 Reiniciando con PM2..."
-        sudo pm2 restart offside-landing || sudo pm2 start npm --name "offside-landing" -- start
+        sudo pm2 restart next-app || sudo pm2 start npm --name "next-app" -- start -- -port 3000
     fi
     
     echo "✅ Despliegue completado exitosamente"
