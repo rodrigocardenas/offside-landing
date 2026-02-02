@@ -66,6 +66,9 @@ ssh -T $SERVER_ALIAS << EOF
     fi
     
     echo "🧹 Extrayendo nuevos archivos..."
+    # Limpiar carpetas antes de extraer
+    rm -rf .next public
+    
     tar -xzf /tmp/deploy-app.tar.gz -C $REMOTE_PATH
     tar -xzf /tmp/deploy-modules.tar.gz -C $REMOTE_PATH
     rm /tmp/deploy-app.tar.gz /tmp/deploy-modules.tar.gz
