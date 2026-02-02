@@ -26,27 +26,23 @@ fi
 
 echo "🚀 Rama validada. Iniciando despliegue de '$REQUIRED_BRANCH'..."
 
-# 3. Limpiar build anterior
-echo "🧹 Limpiando build anterior..."
-rm -rf .next node_modules
-
-# 4. Instalar dependencias (si es necesario)
+# 3. Instalar dependencias (completas)
 echo "📥 Instalando dependencias..."
-npm install --production
+npm install
 
-# 5. Compilar localmente
+# 4. Compilar localmente
 echo "📦 Compilando aplicación Next.js..."
 npm run build
 
-# 6. Comprimir carpetas necesarias
+# 5. Comprimir carpetas necesarias
 echo "📦 Comprimiendo archivos para subir..."
 tar -czf deploy.tar.gz .next public package.json package-lock.json node_modules
 
-# 7. Subir al servidor
+# 6. Subir al servidor
 echo "🚀 Subiendo archivos al servidor..."
 scp deploy.tar.gz $SERVER_ALIAS:$REMOTE_PATH/
 
-# 8. Operaciones en servidor
+# 7. Operaciones en servidor
 echo "🔄 Desplegando en servidor remoto..."
 ssh -T $SERVER_ALIAS << EOF
     set -e
@@ -79,7 +75,7 @@ ssh -T $SERVER_ALIAS << EOF
     echo "📊 Commit: $COMMIT_SHA - $COMMIT_MESSAGE"
 EOF
 
-# 9. Limpieza local
+# 8. Limpieza local
 echo "🧹 Limpiando archivos locales temporales..."
 rm deploy.tar.gz
 
