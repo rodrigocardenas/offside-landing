@@ -159,17 +159,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección Dinámica de Juego (sin overlay ni botón, con ajuste responsive) */}
-      <section className="relative w-full flex justify-center items-center overflow-hidden">
-        <div className="relative w-full aspect-[16/9] md:min-h-[400px] lg:min-h-[600px] xl:min-h-[700px]">
-          <Image
-            src="/dinamica-juego.png"
-            alt="Dinámica de juego Offside Club"
-            fill
-            style={{ objectFit: 'contain', objectPosition: 'center' }}
-            className="z-0"
-            priority={true}
-          />
+      {/* Video Demo Section */}
+      <section className="py-12">
+        <div className="container mx-auto flex justify-center items-center">
+          <div className="w-full max-w-2xl">
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/axClHkTLkw0"
+              title="Offside Club Demo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="rounded-lg"
+            />
+          </div>
         </div>
       </section>
 
@@ -192,6 +196,70 @@ export default function Home() {
               Notificarme
             </Button>
           </form>
+        </div>
+      </section>
+
+      {/* Collaborators and Events Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-[70%_1fr] gap-12">
+            {/* Collaborators Column */}
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold mb-8 text-black">Colaboradores</h2>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-3">
+                <div className="relative w-96 h-48 md:w-96 md:h-64">
+                  <Image
+                    src="/StartUB-Logotipo-01.png"
+                    alt="StartUB"
+                    fill
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
+                  />
+                </div>
+                <div className="relative w-48 h-24 md:w-56 md:h-32">
+                  <Image
+                    src="/ub_logo.png"
+                    alt="Universitat de Barcelona"
+                    fill
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
+                  />
+                </div>
+                <div className="relative w-48 h-24 md:w-56 md:h-32">
+                  <Image
+                    src="/bcn_activa.png"
+                    alt="BCN Activa"
+                    fill
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Events Column */}
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold mb-8 text-black">Eventos</h2>
+              <div className="flex flex-col items-center justify-center gap-8">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="relative w-48 h-24 md:w-56 md:h-28">
+                    <Image
+                      src="/4YFN Logo 2023 WHT@2x.png"
+                      alt="4YFN"
+                      fill
+                      style={{ objectFit: 'contain', objectPosition: 'center' }}
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground">MWC - 4 y 5 de Febrero</p>
+                </div>
+                <div className="relative w-48 h-24 md:w-56 md:h-28">
+                  <Image
+                    src="/sportbiz.png"
+                    alt="SportBiz"
+                    fill
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

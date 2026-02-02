@@ -1,5 +1,25 @@
 {
     "IDX.aI.enableInlineCompletion": true,
     "IDX.aI.enableCodebaseIndexing": true,
-    "postman.settings.dotenv-detection-notification-visibility": false
+    "postman.settings.dotenv-detection-notification-visibility": false,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#2e946e",
+        "activityBar.background": "#2e946e",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#d6b6e8",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#2e946e",
+        "statusBar.background": "#226d51",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#2e946e",
+        "statusBarItem.remoteBackground": "#226d51",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#226d51",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#226d5199",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#226d51"
 }
