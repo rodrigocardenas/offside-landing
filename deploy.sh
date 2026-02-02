@@ -90,6 +90,6 @@ EOF
 
 # 8. Limpieza local
 echo "🧹 Limpiando archivos locales temporales..."
-rm deploy.tar.gz
+rm deploy-app.tar.gz deploy-modules.tar.gz
 
 echo "🎉 ¡Despliegue finalizado!"
