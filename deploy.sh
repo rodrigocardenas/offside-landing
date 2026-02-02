@@ -2,8 +2,8 @@
 set -e
 
 # --- CONFIGURACIÓN ---
-SERVER_ALIAS="offside-app"          # Alias del servidor (configurado en ~/.ssh/config)
-REMOTE_PATH="/var/www/offside-app"  # Ruta en el servidor
+SERVER_ALIAS="offside-app"              # Alias del servidor (configurado en ~/.ssh/config)
+REMOTE_PATH="/var/www/html/offside-landing"  # Ruta en el servidor
 REQUIRED_BRANCH="main"
 DEPLOY_INITIATOR=$(whoami)
 COMMIT_SHA=$(git rev-parse --short HEAD)
@@ -59,7 +59,8 @@ ssh -T $SERVER_ALIAS << EOF
     rm deploy.tar.gz
     
     echo "🔧 Ajustando permisos..."
-    sudo chown -R www-data:www-data /var/www/offside-app
+    sudo chown -R www-data:www-data /var/www/offside-landing
+    sudo chmod -R 755 /var/www/offside-landing
     
     # Limpiar caché de Next.js
     echo "🗑️  Limpiando caché..."
