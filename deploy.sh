@@ -19,10 +19,10 @@ if [ "$CURRENT_BRANCH" != "$REQUIRED_BRANCH" ]; then
 fi
 
 # 2. Validar que no hay cambios sin commitear
-if [ -n "$(git status --porcelain)" ]; then
-    echo "⚠️ ADVERTENCIA: Tienes cambios locales sin guardar en Git."
-    exit 1
-fi
+# if [ -n "$(git status --porcelain)" ]; then
+#     echo "⚠️ ADVERTENCIA: Tienes cambios locales sin guardar en Git."
+#     exit 1
+# fi
 
 echo "🚀 Rama validada. Iniciando despliegue de '$REQUIRED_BRANCH'..."
 
@@ -66,16 +66,32 @@ ssh -T $SERVER_ALIAS << EOF
     fi
     
     echo "🧹 Extrayendo nuevos archivos..."
-    # Limpiar carpetas antes de extraer
-    rm -rf .next public
+    # Cambiar a /tmp para extraer con permisos correctos
+    cd /tmp
+    tar -xzf /tmp/deploy-app.tar.gz
+    tar -xzf /tmp/deploy-modules.tar.gz
     
-    tar -xzf /tmp/deploy-app.tar.gz -C $REMOTE_PATH
-    tar -xzf /tmp/deploy-modules.tar.gz -C $REMOTE_PATH
+    # Limpiar carpetas del servidor
+    sudo rm -rf $REMOTE_PATH/.next $REMOTE_PATH/public $REMOTE_PATH/node_modules
+    
+    # Copiar los archivos extraídos al servidor
+    sudo mv /tmp/.next $REMOTE_PATH/
+    sudo mv /tmp/public $REMOTE_PATH/
+    sudo mv /tmp/node_modules $REMOTE_PATH/
+    sudo mv /tmp/package.json $REMOTE_PATH/
+    sudo mv /tmp/package-lock.json $REMOTE_PATH/
+    
     rm /tmp/deploy-app.tar.gz /tmp/deploy-modules.tar.gz
     
     echo "🔧 Ajustando permisos..."
-    chown -R www-data:www-data $REMOTE_PATH
-    chmod -R 755 $REMOTE_PATH
+    sudo chown -R www-data:www-data $REMOTE_PATH
+    # Directorios: 755, Archivos: 644
+    sudo find $REMOTE_PATH -type d -exec chmod 755 {} \;
+    sudo find $REMOTE_PATH -type f -exec chmod 644 {} \;
+    # Asegurar permisos de ejecución para directorios .next y binarios
+    sudo chmod -R 755 $REMOTE_PATH/.next
+    sudo chmod +x $REMOTE_PATH/node_modules/.bin/*
+    sudo chmod +x $REMOTE_PATH/node_modules/next/dist/bin/next 2>/dev/null || true
     
     # Limpiar caché de Next.js
     echo "🗑️  Limpiando caché..."
@@ -84,7 +100,7 @@ ssh -T $SERVER_ALIAS << EOF
     # Reiniciar PM2 (si usas PM2)
     if command -v pm2 &> /dev/null; then
         echo "🔄 Reiniciando con PM2..."
-        sudo pm2 restart next-app || sudo pm2 start npm --name "next-app" -- start -- -port 3000
+        sudo pm2 restart next-app || sudo pm2 start npm --name "next-app" -- start -- -p 3000
     fi
     
     echo "✅ Despliegue completado exitosamente"

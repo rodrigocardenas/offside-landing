@@ -241,7 +241,7 @@ export default function Home() {
                 <div className="flex flex-col items-center gap-2">
                   <div className="relative w-48 h-24 md:w-56 md:h-28">
                     <Image
-                      src="/4YFN Logo 2023 WHT@2x.png"
+                      src="/4YFN.png"
                       alt="4YFN"
                       fill
                       style={{ objectFit: 'contain', objectPosition: 'center' }}
