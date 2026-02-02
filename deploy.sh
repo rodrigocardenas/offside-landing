@@ -63,7 +63,7 @@ ssh -T $SERVER_ALIAS << EOF
     
     echo "🔧 Ajustando permisos..."
     sudo chown -R www-data:www-data /var/www/html/offside-landing
-    sudo chmod -R 755 /var/www/offside-landing
+    sudo chmod -R 755 /var/www/html/offside-landing
     
     # Limpiar caché de Next.js
     echo "🗑️  Limpiando caché..."
