@@ -34,9 +34,9 @@ npm install
 echo "📦 Compilando aplicación Next.js..."
 npm run build
 
-# 5. Comprimir carpetas necesarias
+# 5. Comprimir carpetas necesarias (sin node_modules)
 echo "📦 Comprimiendo archivos para subir..."
-tar -czf deploy.tar.gz .next public package.json package-lock.json node_modules
+tar -czf deploy.tar.gz .next public package.json package-lock.json
 
 # 6. Subir al servidor
 echo "🚀 Subiendo archivos al servidor..."
@@ -58,8 +58,11 @@ ssh -T $SERVER_ALIAS << EOF
     tar -xzf deploy.tar.gz
     rm deploy.tar.gz
     
+    echo "📥 Instalando dependencias en el servidor..."
+    npm install --production
+    
     echo "🔧 Ajustando permisos..."
-    sudo chown -R www-data:www-data /var/www/offside-landing
+    sudo chown -R www-data:www-data /var/www/html/offside-landing
     sudo chmod -R 755 /var/www/offside-landing
     
     # Limpiar caché de Next.js
