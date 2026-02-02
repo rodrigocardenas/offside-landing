@@ -26,21 +26,25 @@ fi
 
 echo "🚀 Rama validada. Iniciando despliegue de '$REQUIRED_BRANCH'..."
 
-# 3. Instalar dependencias (completas)
+# 3. Limpiar build anterior para evitar problemas de permisos
+echo "🧹 Limpiando build anterior..."
+rm -rf .next
+
+# 4. Instalar dependencias (completas)
 echo "📥 Instalando dependencias..."
 npm install
 
-# 4. Compilar localmente
+# 5. Compilar localmente
 echo "📦 Compilando aplicación Next.js..."
 npm run build
 
-# 5. Comprimir carpetas necesarias (sin node_modules)
+# 6. Comprimir carpetas necesarias (sin node_modules)
 echo "📦 Comprimiendo archivos para subir..."
 tar -czf deploy.tar.gz .next public package.json package-lock.json
 
-# 6. Subir al servidor
+# 7. Subir al servidor a directorio temporal
 echo "🚀 Subiendo archivos al servidor..."
-scp deploy.tar.gz $SERVER_ALIAS:$REMOTE_PATH/
+scp deploy.tar.gz $SERVER_ALIAS:/tmp/
 
 # 7. Operaciones en servidor
 echo "🔄 Desplegando en servidor remoto..."
@@ -51,19 +55,20 @@ ssh -T $SERVER_ALIAS << EOF
     # Backup anterior
     if [ -d ".next" ]; then
         echo "💾 Creando backup..."
-        tar -czf .next.backup.tar.gz .next
+        sudo tar -czf .next.backup.tar.gz .next 2>/dev/null || true
     fi
     
     echo "🧹 Extrayendo nuevos archivos..."
-    tar -xzf deploy.tar.gz
-    rm deploy.tar.gz
+    sudo tar -xzf /tmp/deploy.tar.gz -C $REMOTE_PATH
+    sudo rm /tmp/deploy.tar.gz
     
     echo "📥 Instalando dependencias en el servidor..."
-    npm install --production
+    cd $REMOTE_PATH
+    sudo npm install --production
     
     echo "🔧 Ajustando permisos..."
-    sudo chown -R www-data:www-data /var/www/html/offside-landing
-    sudo chmod -R 755 /var/www/html/offside-landing
+    sudo chown -R www-data:www-data $REMOTE_PATH
+    sudo chmod -R 755 $REMOTE_PATH
     
     # Limpiar caché de Next.js
     echo "🗑️  Limpiando caché..."
