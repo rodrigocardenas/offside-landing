@@ -38,13 +38,20 @@ npm install
 echo "📦 Compilando aplicación Next.js..."
 npm run build
 
-# 6. Comprimir carpetas necesarias (sin node_modules)
+# 6. Comprimir carpetas necesarias
 echo "📦 Comprimiendo archivos para subir..."
-tar -czf deploy.tar.gz .next public package.json package-lock.json
+echo "  - Comprimiendo código compilado..."
+tar -czf deploy-app.tar.gz .next public package.json package-lock.json
+
+echo "  - Comprimiendo dependencias (esto puede tardar)..."
+tar -czf deploy-modules.tar.gz node_modules
 
 # 7. Subir al servidor a directorio temporal
 echo "🚀 Subiendo archivos al servidor..."
-scp deploy.tar.gz $SERVER_ALIAS:/tmp/
+echo "  - Subiendo código compilado..."
+scp deploy-app.tar.gz $SERVER_ALIAS:/tmp/
+echo "  - Subiendo dependencias..."
+scp deploy-modules.tar.gz $SERVER_ALIAS:/tmp/
 
 # 7. Operaciones en servidor
 echo "🔄 Desplegando en servidor remoto..."
@@ -59,16 +66,13 @@ ssh -T $SERVER_ALIAS << EOF
     fi
     
     echo "🧹 Extrayendo nuevos archivos..."
-    sudo tar -xzf /tmp/deploy.tar.gz -C $REMOTE_PATH
-    sudo rm /tmp/deploy.tar.gz
-    
-    echo "📥 Instalando dependencias en el servidor..."
-    cd $REMOTE_PATH
-    sudo npm install --production
+    tar -xzf /tmp/deploy-app.tar.gz -C $REMOTE_PATH
+    tar -xzf /tmp/deploy-modules.tar.gz -C $REMOTE_PATH
+    rm /tmp/deploy-app.tar.gz /tmp/deploy-modules.tar.gz
     
     echo "🔧 Ajustando permisos..."
-    sudo chown -R www-data:www-data $REMOTE_PATH
-    sudo chmod -R 755 $REMOTE_PATH
+    chown -R www-data:www-data $REMOTE_PATH
+    chmod -R 755 $REMOTE_PATH
     
     # Limpiar caché de Next.js
     echo "🗑️  Limpiando caché..."
