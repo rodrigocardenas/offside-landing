@@ -105,7 +105,7 @@ export default function Home() {
           <div className="flex items-center justify-center mb-6"> {/* Added margin-bottom */}
             {/* Using next/image with configured host */}
             <Image
-              src="https://drive.google.com/uc?export=view&id=1m_sQfObWsqNZiycHdV4HYqhTOISdw8Ck"
+              src="/logo-offside-512x512.png" // Ensure this image is in the public directory
               alt="Offside Club Logo"
               width={260} // Increased size
               height={120} // Increased size
