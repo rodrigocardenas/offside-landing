@@ -3,7 +3,7 @@ set -e
 
 # --- CONFIGURACIÓN ---
 SERVER_ALIAS="offside-app"              # Alias del servidor (configurado en ~/.ssh/config)
-REMOTE_PATH="/var/www/html/offside-landing"  # Ruta en el servidor
+REMOTE_PATH="/var/www/offside-landing"  # Ruta en el servidor
 REQUIRED_BRANCH="main"
 DEPLOY_INITIATOR=$(whoami)
 COMMIT_SHA=$(git rev-parse --short HEAD)
